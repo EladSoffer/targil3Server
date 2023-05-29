@@ -1,4 +1,7 @@
 const Chat = require('../models/Chat');
+const Check = require('../models/UserPassName');
+const User = require('../models/User');
+
 
 const getChats = async (username) => {
   try {
@@ -24,5 +27,23 @@ const getChats = async (username) => {
   }
 
 };
+const postChats = async (username,newUser) => {
+  const newChatContact = Check.findOne({username : newUser});
+  if (newChatContact === null){
+    return -1;
+  }
+  const me = Check.findOne({username : username})
+  const me2 = ({username: me.username, displayName : me.displayName, profilePic: me.profilePic});
+  const newChatContact2 = ({username: newChatContact.username, displayName : newChatContact.displayName, profilePic: newChatContact.profilePic});
+  const msg = [];
+  const users = [newChatContact2, me2];
+  const value = new Chat({users: users ,messages:msg});
+  await value.save();
+  const newChatContact3 = ({id : newChatContact.id,username: newChatContact.username, displayName : newChatContact.displayName, profilePic: newChatContact.profilePic});
 
-module.exports = { getChats };
+  return newChatContact3;
+}
+
+
+
+module.exports = { getChats, postChats };
