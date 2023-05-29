@@ -5,9 +5,8 @@ const registerService = require('../service/register');
 const existingUser = await UserPassName.findOne({ username: username });
 if (existingUser) {
   // User with the same username already exists
-  const error = new Error('Username already taken. Please choose a different username.');
-  error.statusCode = 401; // Set the status code to 401
-  throw error;
+  return res.status(409).json({ error: 'Username already taken. Please choose a different username.' });
+
 }
 
 const createUser = async(req, res) => {
