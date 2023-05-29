@@ -1,4 +1,4 @@
-const userDetailesService = require('../service/userDetails');
+const userDetailesService = require('../services/userDetailes');
 
 const getDetailes = async(req, res) => {
     const token = req.headers.authorization.split(" ")[1];
