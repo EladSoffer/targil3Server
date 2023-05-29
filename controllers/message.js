@@ -1,7 +1,9 @@
 const messageService = require('../service/message');
 
 const createMessage = async(req, res) => {
-    res.json(await messageService.createMessage(req.body.title));
+    const token = req.headers.authorization.split(" ")[1];
+    const data = jwt.verify(token, key);
+    res.json(await messageService.createMessage(req.body.msg, data.username));
 };
 
 
