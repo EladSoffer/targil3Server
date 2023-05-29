@@ -43,6 +43,4 @@ app.use('/api/Users/:username', userDetailes);
 const chats = require('./routs/chats');
 app,ues('/api/Chats',chats);
 
-
-
 app.set('view engine', 'ejs');
