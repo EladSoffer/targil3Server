@@ -1,6 +1,6 @@
 const registerService = require('../service/register');
-const UserPassName = require('../models/UserPassName');
 
+const UserPassName = require('../models/UserPassName')
 
 const createUser = async(req, res) => {
 
