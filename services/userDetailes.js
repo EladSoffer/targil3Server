@@ -1,6 +1,6 @@
 const getd = require('../models/UserPassName');
 
-const showDetailes = async( username) =>{
+const getDetailes = async( username) =>{
     const user = await getd.findOne({username})
     const userWithDetails={
         username : user.username,
@@ -10,4 +10,4 @@ const showDetailes = async( username) =>{
     return userWithDetails;
 };
 
-module.exports = {createMessage};
+module.exports = {getDetailes};
