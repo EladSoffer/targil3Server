@@ -15,7 +15,10 @@ mongoose.connect(process.env.CONNECTION_STRING, {
 });
 
 const messages = require('./routes/message');
-app.use('./messages', messages)
+app.use('./api/Chats/:id/Messages', messages)
+
+const register = require('./routes/register');
+app.use('./api/Users', register)
 
  app.set('view engine', 'ejs');
 
