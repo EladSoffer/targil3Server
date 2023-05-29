@@ -1,18 +1,18 @@
 const registerService = require('../service/register');
+const UserPassName = require('../models/UserPassName')
 
+const createUser = async (req, res) => {
+  const username = req.body.username;
 
-// Check if the user already exists
-const existingUser = await UserPassName.findOne({ username: username });
-if (existingUser) {
-  // User with the same username already exists
-  const error = new Error('Username already taken. Please choose a different username.');
-  error.statusCode = 401; // Set the status code to 401
-  throw error;
-}
+  // Check if the user already exists
+  const existingUser = await UserPassName.findOne({ username: username });
+  if (existingUser) {
+    // User with the same username already exists
+    return res.status(409).json({ error: 'Username already taken. Please choose a different username.' });
+  }
 
-const createUser = async(req, res) => {
-    res.sendStatus(200).json(await registerService.createUser(req.body.title)); //////do i need .json twice????
+  const createdUser = await registerService.createUser(req.body.title);
+  return res.status(200).json(createdUser);
 };
 
-
-module.exports = {createUser};
+module.exports = { createUser };
