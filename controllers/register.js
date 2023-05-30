@@ -1,8 +1,8 @@
-const registerService = require('../service/register');
+const registerService = require('../services/register');
 
 const UserPassName = require('../models/UserPassName')
 
-const createUser = async(req, res) => {
+const craeteUser = async(req, res) => {
 
 // Check if the user already exists
 const username = req.body.username;
@@ -15,6 +15,6 @@ const createdUser = await registerService.createUser(req.body.title);
 return res.status(200).json(createdUser);
 };
 
-module.exports = {createUser};
+module.exports = {craeteUser};
 
 

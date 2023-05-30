@@ -5,7 +5,8 @@ const express = require('express');
 var router = express.Router();
 
 router.get('/',isLoggedIn,chatsControllers.getChats);
-router.post('/',isLoggedIn,chatsControllers.postChat);
+
+router.post('/',isLoggedIn,chatsControllers.postChats);
 
 module.exports = router;
 
