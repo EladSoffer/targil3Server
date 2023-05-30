@@ -3,8 +3,8 @@ const oneChatControllers = require('../controllers/oneChat');
 const express = require('express');
 var router = express.Router();
 
-router.get('/',isLoggedIn,chatsControllers.getChats);
+router.get('/',isLoggedIn,oneChatControllers.getChats);
 
-router.post('/',isLoggedIn,chatsControllers.postChats);
+router.delete('/',isLoggedIn,oneChatControllers.deleteChat);
 
 module.exports = router;

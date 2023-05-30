@@ -40,7 +40,7 @@ const chats = require('./routes/chats');
 app.use('/api/Chats', chats);
 
 
-const chat = require('./routes/oneChat');
+const chat = require('./routes/oneChat.js');
 app.use('/api/Chat/:id', chat);
 
 
