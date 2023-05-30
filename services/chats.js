@@ -33,8 +33,17 @@ const postChats = async (username,newUser) => {
     return -1;
   }
   const me = Check.findOne({username : username})
-  const me2 = ({username: me.username, displayName : me.displayName, profilePic: me.profilePic});
-  const newChatContact2 = ({username: newChatContact.username, displayName : newChatContact.displayName, profilePic: newChatContact.profilePic});
+  const me2 = ({
+    username: me.username,
+    displayName : me.displayName,
+    profilePic: me.profilePic
+  });
+  const newChatContact2  = new User({
+    username: newChatContact.username,
+    displayName : newChatContact.displayName,
+    profilePic: newChatContact.profilePic
+
+  });
   const msg = [];
   const users = [newChatContact2, me2];
   const value = new Chat({users: users ,messages:msg});
