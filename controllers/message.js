@@ -1,4 +1,4 @@
-const messageService = require('../service/message');
+const messageService = require('../services/message');
 
 const createMessage = async(req, res) => {
     const token = req.headers.authorization.split(" ")[1];
