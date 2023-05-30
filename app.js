@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(cors());
 
 
@@ -16,8 +17,8 @@ mongoose.connect(mongoURI, {
 })
   .then(() => {
     console.log('Connected to MongoDB');
-    app.listen(8080, () => {
-      console.log('Server started on port 8080');
+    app.listen(5000, () => {
+      console.log('Server started on port 5000');
     });
   })
   .catch((err) => {
@@ -28,6 +29,7 @@ const messages = require('./routes/message');
 app.use('/api/Chats/:id/Messages', messages);
 
 const register = require('./routes/register');
+
 app.use('/api/Users', register)
 
 const login = require('./routes/login');

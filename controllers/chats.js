@@ -1,8 +1,16 @@
 const chatsService = require('../services/chats');
+const jwt = require('jsonwebtoken');
+
+const key = "secret"
 
 const getChats = async(req, res) => {
+    
     const token = req.headers.authorization.split(" ")[1];
-    const data = jwt.verify(token, key);
+    const parsedToken = JSON.parse(token);
+    const tokenValue = parsedToken.token;
+
+
+    const data = jwt.verify(tokenValue, key);
     try{
     res.json(await chatsService.getChats(data.username));
     } catch{
@@ -11,7 +19,9 @@ const getChats = async(req, res) => {
 };
 const postChats = async(req, res) =>{
     const token = req.headers.authorization.split(" ")[1];
-    const data = jwt.verify(token, key);
+    const parsedToken = JSON.parse(token);
+    const tokenValue = parsedToken.token;
+    const data = jwt.verify(tokenValue, key);
     const newUser = req.body.username;
     try{
         const temp = await chatsService.postChats(data.username, newUser);

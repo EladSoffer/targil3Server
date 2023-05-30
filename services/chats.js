@@ -28,28 +28,29 @@ const getChats = async (username) => {
 
 };
 const postChats = async (username,newUser) => {
-  const newChatContact = Check.findOne({username : newUser});
+  console.log("begin");
+  const newChatContact = await Check.findOne({username : newUser});
   if (newChatContact === null){
     return -1;
   }
-  const me = Check.findOne({username : username})
-  const me2 = ({
+  const me = await Check.findOne({username : username})
+  const me2 = new User({
     username: me.username,
-    displayName : me.displayName,
+    displayName: me.displayName,
     profilePic: me.profilePic
   });
-  const newChatContact2  = new User({
+  const newChatContact2 = new User({
     username: newChatContact.username,
-    displayName : newChatContact.displayName,
+    displayName: newChatContact.displayName,
     profilePic: newChatContact.profilePic
-
   });
   const msg = [];
   const users = [newChatContact2, me2];
+  
   const value = new Chat({users: users ,messages:msg});
   await value.save();
   const newChatContact3 = ({id : newChatContact.id,username: newChatContact.username, displayName : newChatContact.displayName, profilePic: newChatContact.profilePic});
-
+  console.log("end");
   return newChatContact3;
 }
 

@@ -1,8 +1,13 @@
 const messageService = require('../services/message');
+const jwt = require('jsonwebtoken');
+
+const key = "secret"
 
 const createMessage = async(req, res) => {
     const token = req.headers.authorization.split(" ")[1];
-    const data = jwt.verify(token, key);
+    const parsedToken = JSON.parse(token);
+    const tokenValue = parsedToken.token;
+    const data = jwt.verify(tokenValue, key);
     const chatId = req.params.id;
     try{
     const temp = (await messageService.createMessage(req.body.msg, data.username, chatId));
