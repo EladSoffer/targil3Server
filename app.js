@@ -34,7 +34,6 @@ const register = require('./routes/register');
 app.use('./api/Users', register)
 
 const login = require('./routes/login');
-app.use('/api/Chats/:id/Messages', messages);
 app.use('/api/Tokens',login);
 
 const userDetailes = require('./routes/userDetailes');

@@ -1,8 +1,29 @@
 const Message = require('../models/Message');
+const Chats = require('../models/Chat');
+const User = require('../models/User');
+const UserPassName = require('../models/UserPassName');
 
-const createMessage = async( content, username) =>{
-    const message = new Message({ sender: username, content: content});
-    return await message.save();
+const createMessage = async (content, username, chatId) => {
+    try {
+        const chat = await Chats.findById(chatId);
+        if (!chat) {
+            return 1; /// there isn't this chat
+        }
+        const senderWithPass = UserPassName.findOne({username : username});
+        const user = new User({
+            username: senderWithPass.username,
+            displayName: senderWithPass.displayName,
+            profilePic: senderWithPass.profilePic
+        });
+        const message = new Message({ sender: user, content: content }); // Chat found, add message
+        // Add the message to the chat's messages array
+        chat.messages.push(message);
+        // Save the updated chat
+        await chat.save();
+        return message;
+    } catch (error) {
+        throw new Error('Failed to get the chat in mongodb');
+    }
 };
 
-module.exports = {createMessage};
+module.exports = { createMessage };
