@@ -22,7 +22,9 @@ const createMessage = async(req, res) => {
 };
 
 const getMessages = async(req, res) => {
-    const chatId = req.params.id;
+    const chatId = req.params._id;
+    console.log(req.query);
+    console.log(chatId + 'dvsd');
     try{
         const temp = (await messageService.getMessages(chatId));
         if(temp === 1){

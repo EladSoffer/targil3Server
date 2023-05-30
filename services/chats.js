@@ -28,7 +28,7 @@ const getChats = async (username) => {
 
 };
 const postChats = async (username,newUser) => {
-  console.log("begin");
+  const userCount = await Chat.countDocuments();
   const newChatContact = await Check.findOne({username : newUser});
   if (newChatContact === null){
     return -1;
@@ -40,6 +40,7 @@ const postChats = async (username,newUser) => {
     profilePic: me.profilePic
   });
   const newChatContact2 = new User({
+    id: userCount + 1,
     username: newChatContact.username,
     displayName: newChatContact.displayName,
     profilePic: newChatContact.profilePic
@@ -49,9 +50,11 @@ const postChats = async (username,newUser) => {
   
   const value = new Chat({users: users ,messages:msg});
   await value.save();
-  const newChatContact3 = ({id : newChatContact.id,username: newChatContact.username, displayName : newChatContact.displayName, profilePic: newChatContact.profilePic});
-  console.log("end");
-  return newChatContact3;
+  //const newChatContact3 = ;
+  console.log(newChatContact2);
+
+  return {id:newChatContact2.id,
+          user:newChatContact2};
 }
 
 

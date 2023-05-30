@@ -24,12 +24,12 @@ const postChats = async(req, res) =>{
     const data = jwt.verify(tokenValue, key);
     const newUser = req.body.username;
     try{
-        const temp = await chatsService.postChats(data.username, newUser);
-        if (temp === -1){
+        const user = await chatsService.postChats(data.username, newUser);
+        if (user === -1){
             res.status(400).json({ error: 'There no such contact' })
         }
         else{
-            res.status(200).json({temp});
+            res.status(200).json(user);
         }
         } catch{
             res.status(500).json({ error: 'Failed to retrieve mongodb' });
