@@ -9,7 +9,7 @@ const createMessage = async (content, username, chatId) => {
         if (!chat) {
             return 1; /// there isn't this chat
         }
-        const senderWithPass = UserPassName.findOne({username : username});
+        const senderWithPass = UserPassName.findOne({ username: username });
         const user = new User({
             username: senderWithPass.username,
             displayName: senderWithPass.displayName,
@@ -26,4 +26,18 @@ const createMessage = async (content, username, chatId) => {
     }
 };
 
-module.exports = { createMessage };
+const getMessages = async (chatId) => {
+    try {
+        const chat = await Chats.findById(chatId);
+        if (!chat) {
+            return 1; /// there isn't this chat
+        } else {
+            return chat.messages;
+        }
+    } catch (error) {
+        throw new Error('Failed to get the chat in mongodb');
+    }
+};
+
+
+    module.exports = { createMessage, getMessages };

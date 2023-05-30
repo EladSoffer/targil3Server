@@ -1,4 +1,4 @@
-import { isLoggedIn }  from '../controllers/login.js'
+const { isLoggedIn } = require('../controllers/login');
 
 const userDetailesController = require('../controllers/userDetailes');
 const express = require('express');
