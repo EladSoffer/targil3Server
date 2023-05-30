@@ -48,7 +48,8 @@ const isLoggedIn = (req, res, next) => {
 }
 
 
-module.export = {
-    login,
-    isLoggedIn
+
+module.exports = {
+  login,
+  isLoggedIn
 };
