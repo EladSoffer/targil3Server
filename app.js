@@ -37,6 +37,9 @@ const userDetailes = require('./routes/userDetailes');
 app.use('/api/Users/:username', userDetailes);
 
 const chats = require('./routes/chats');
-app,ues('/api/Chats', chats);
+app.use('/api/Chats', chats);
+
+const chat = require('./routes/oneChat');
+app.use('/api/Chat/:id', chat);
 
 app.set('view engine', 'ejs');

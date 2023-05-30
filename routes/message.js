@@ -6,6 +6,6 @@ var router = express.Router();
 
 
 router.post('/', isLoggedIn, messageControllers.createMessage);
-//router.get('/', isLoggedIn, messageControllers.getMessages);
+router.get('/', isLoggedIn, messageControllers.getMessages);
 
 module.exports = router;
