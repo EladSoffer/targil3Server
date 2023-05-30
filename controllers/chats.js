@@ -10,4 +10,9 @@ const getChats = async(req, res) => {
     }
 };
 
+
+const postChat = async(req, res) => {
+    
+}
+
 module.exports = {getChats};
