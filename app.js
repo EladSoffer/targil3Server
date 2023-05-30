@@ -28,15 +28,15 @@ const messages = require('./routes/message');
 app.use('/api/Chats/:id/Messages', messages);
 
 const register = require('./routes/register');
-app.use('./api/Users', register)
+app.use('/api/Users', register)
 
 const login = require('./routes/login');
-app.use('/api/Tokens',login);
+app.use('/api/Tokens', login);
 
 const userDetailes = require('./routes/userDetailes');
 app.use('/api/Users/:username', userDetailes);
 
 const chats = require('./routes/chats');
-app,ues('/api/Chats',chats);
+app,ues('/api/Chats', chats);
 
 app.set('view engine', 'ejs');
