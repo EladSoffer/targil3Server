@@ -24,8 +24,7 @@ const postChats = async(req, res) =>{
         } catch{
             res.status(500).json({ error: 'Failed to retrieve mongodb' });
         }
-
 };
 
-
 module.exports = {getChats,postChats};
+
