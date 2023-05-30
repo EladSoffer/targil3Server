@@ -1,5 +1,5 @@
 
-import { isLoggedIn }  from '../controllers/login.js'
+const { isLoggedIn } = require('../controllers/login');
 const chatsControllers = require('../controllers/chats');
 const express = require('express');
 var router = express.Router();
