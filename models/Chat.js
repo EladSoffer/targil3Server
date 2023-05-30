@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const Chat  = new Schema({
     id: {
-        type: integer
+        type: Number
     },
     users: [{
         type: Schema.Types.ObjectId,
