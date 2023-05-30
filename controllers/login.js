@@ -48,7 +48,7 @@ const isLoggedIn = (req, res, next) => {
 }
 
 
-export {
-    login,
-    isLoggedIn
-}
+module.exports = {
+  login,
+  isLoggedIn
+};
