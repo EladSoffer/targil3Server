@@ -6,7 +6,6 @@ var router = express.Router();
 
 
 router.post('/:id/Messages', isLoggedIn, messageControllers.createMessage);
-console.log("dd");
 router.get('/:id/Messages', isLoggedIn, messageControllers.getMessages);
 
 module.exports = router;

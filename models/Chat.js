@@ -4,13 +4,30 @@ const Message = require('../models/Message');
 
 const Schema = mongoose.Schema;
 
-const ChatSchema = new Schema({
-  users: {
-    type: [User.schema] // Use User.schema to reference the schema of the User model
+const UserSchema = new Schema({
+  id: {
+    type: Number,
   },
-  messages: {
-    type: [Message.schema] // Make sure the Message model is imported correctly as well
-  }
+  username: String,
+  displayName: String,
+  profilePic: String
+});
+
+const MessageSchema = new Schema({
+  content: String,
+  created: {
+    type: Date,
+    default: Date.now
+  },
+  sender: UserSchema
+});
+
+const ChatSchema = new Schema({
+  id: {
+    type: Number,
+  },
+  users: [UserSchema],
+  messages: [MessageSchema]
 });
 
 module.exports = mongoose.model('Chat', ChatSchema);

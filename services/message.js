@@ -9,13 +9,16 @@ const createMessage = async (content, username, chatId) => {
         if (!chat) {
             return 1; /// there isn't this chat
         }
-        const senderWithPass = await UserPassName.findOne({ username: username });
-        const user = new User({
-            username: senderWithPass.username,
-            displayName: senderWithPass.displayName,
-            profilePic: senderWithPass.profilePic
-        });
-        const message = new Message({ sender: { username: user.username }, content: content });
+
+        const senderWithPass = UserPassName.findOne({ username });
+        // const user = new User({
+        //     username: senderWithPass.username,
+        //     displayName: senderWithPass.displayName,
+        //     profilePic: senderWithPass.profilePic
+        // });
+ 
+        const message = new Message({ sender: {username: username}, content: content }); // Chat found, add message
+
         // Add the message to the chat's messages array
         chat.messages.push(message);
         // Save the updated chat
@@ -29,10 +32,12 @@ const createMessage = async (content, username, chatId) => {
 const getMessages = async (chatId) => {
     try {
         const chat = await Chats.findById(chatId);
+        const temp = chat.messages.reverse();
+        console.log(temp);
         if (!chat) {
             return 1; /// there isn't this chat
         } else {
-            return chat.messages;
+            return temp;
         }
     } catch (error) {
         throw new Error('Failed to get the chat in mongodb');

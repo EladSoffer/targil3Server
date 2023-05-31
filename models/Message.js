@@ -9,7 +9,8 @@
         },
         sender: {
             username: {
-                type: String
+                type: String,
+                required: true
             }
         },
         content: {
