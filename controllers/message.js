@@ -22,7 +22,6 @@ const createMessage = async(req, res) => {
 };
 
 const getMessages = async(req, res) => {
-
     const chatId = req.params.id;
     console.log(chatId);
     try{

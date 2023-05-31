@@ -44,7 +44,7 @@ app.use('/api/Chats', chats);
 
 
 const chat = require('./routes/oneChat.js');
-app.use('/api/Chat/:id', chat);
+app.use('/api/Chats', chat);
 
 
 app.set('view engine', 'ejs');
