@@ -8,8 +8,10 @@
             default: Date.now
         },
         sender: {
-            type: Schema.Types.ObjectId,
-            ref: 'User'
+            username: {
+                type: String,
+                required: true
+            }
         },
         content: {
              type: String
