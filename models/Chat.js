@@ -3,9 +3,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  id:{
+  id: {
     type: Number,
-    unique: true
   },
   username: String,
   displayName: String,
@@ -14,11 +13,17 @@ const UserSchema = new Schema({
 
 const MessageSchema = new Schema({
   content: String,
-  timestamp: Date,
+  created: {
+    type: Date,
+    default: Date.now
+  },
   sender: UserSchema
 });
 
 const ChatSchema = new Schema({
+  id: {
+    type: Number,
+  },
   users: [UserSchema],
   messages: [MessageSchema]
 });

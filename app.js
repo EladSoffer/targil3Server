@@ -6,6 +6,7 @@ const cors = require('cors');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.json({limit: "1000mb"}));
 
 
 const mongoose = require('mongoose');
@@ -27,6 +28,7 @@ mongoose.connect(mongoURI, {
 
 const messages = require('./routes/message');
 app.use('/api/Chats', messages);
+
 
 const register = require('./routes/register');
 

@@ -11,10 +11,10 @@ const getChats = async (username) => {
         const otherUser = chat.users.find((user) => user.username !== username);
         let lastMes = null;
         if(chat.messages.length != 0){
-             lastMes = chat.messages[0];
+             lastMes = chat.messages[chat.messages.length - 1];
         } 
         const chatData = {
-            id: chat.id,
+            id: chat._id,
             user: otherUser,
             lastMessage: lastMes
           };
@@ -27,35 +27,44 @@ const getChats = async (username) => {
   }
 
 };
-const postChats = async (username,newUser) => {
+const postChats = async (username, newUser) => {
   const userCount = await Chat.countDocuments();
-  const newChatContact = await Check.findOne({username : newUser});
-  if (newChatContact === null){
+  const newChatContact = await Check.findOne({ username: newUser });
+  
+
+  if (newChatContact === null) {
     return -1;
   }
-  const me = await Check.findOne({username : username})
-  const me2 = new User({
+
+  const me = await Check.findOne({ username: username });
+  const me2 = {
     username: me.username,
     displayName: me.displayName,
     profilePic: me.profilePic
-  });
-  const newChatContact2 = new User({
-    id: userCount + 1,
+  };
+
+  const newChatContact2 = {
     username: newChatContact.username,
     displayName: newChatContact.displayName,
     profilePic: newChatContact.profilePic
-  });
+  };
+
   const msg = [];
   const users = [newChatContact2, me2];
-  
-  const value = new Chat({users: users ,messages:msg});
-  await value.save();
-  //const newChatContact3 = ;
-  console.log(newChatContact2);
 
-  return {id:newChatContact2.id,
-          user:newChatContact2};
-}
+
+  const value = new Chat({users: users, messages: msg });
+  try{
+    await value.save();
+  }catch(err){
+    console.log("problem");
+  }
+  const chatId = value._id.toString();
+  
+
+  return { id: chatId, user: newChatContact2 };
+};
+
 
 
 

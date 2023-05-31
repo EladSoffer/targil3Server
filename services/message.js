@@ -9,7 +9,6 @@ const createMessage = async (content, username, chatId) => {
         if (!chat) {
             return 1; /// there isn't this chat
         }
-        console.log(username);
         const senderWithPass = UserPassName.findOne({ username });
         // const user = new User({
         //     username: senderWithPass.username,
@@ -31,10 +30,12 @@ const createMessage = async (content, username, chatId) => {
 const getMessages = async (chatId) => {
     try {
         const chat = await Chats.findById(chatId);
+        const temp = chat.messages.reverse();
+        console.log(temp);
         if (!chat) {
             return 1; /// there isn't this chat
         } else {
-            return chat.messages;
+            return temp;
         }
     } catch (error) {
         throw new Error('Failed to get the chat in mongodb');
