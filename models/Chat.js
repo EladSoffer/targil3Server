@@ -1,26 +1,29 @@
 const mongoose = require('mongoose');
+const User = require('../models/User'); // Update the path to the User model file
+const Message = require('../models/Message');
 
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
-  id:{
-    type: Number,
-    unique: true
-  },
-  username: String,
-  displayName: String,
-  profilePic: String
-});
-
-const MessageSchema = new Schema({
-  content: String,
-  timestamp: Date,
-  sender: UserSchema
-});
-
 const ChatSchema = new Schema({
-  users: [UserSchema],
-  messages: [MessageSchema]
+  users: {
+    type: [User.schema] // Use User.schema to reference the schema of the User model
+  },
+  messages: {
+    type: [Message.schema] // Make sure the Message model is imported correctly as well
+  }
 });
 
 module.exports = mongoose.model('Chat', ChatSchema);
+
+
+
+
+
+
+
+
+
+
+
+
+

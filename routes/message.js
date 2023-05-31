@@ -5,7 +5,8 @@ const express = require('express');
 var router = express.Router();
 
 
-router.post('/', isLoggedIn, messageControllers.createMessage);
-router.get('/', isLoggedIn, messageControllers.getMessages);
+router.post('/:id/Messages', isLoggedIn, messageControllers.createMessage);
+console.log("dd");
+router.get('/:id/Messages', isLoggedIn, messageControllers.getMessages);
 
 module.exports = router;

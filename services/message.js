@@ -9,13 +9,13 @@ const createMessage = async (content, username, chatId) => {
         if (!chat) {
             return 1; /// there isn't this chat
         }
-        const senderWithPass = UserPassName.findOne({ username: username });
+        const senderWithPass = await UserPassName.findOne({ username: username });
         const user = new User({
             username: senderWithPass.username,
             displayName: senderWithPass.displayName,
             profilePic: senderWithPass.profilePic
         });
-        const message = new Message({ sender: user, content: content }); // Chat found, add message
+        const message = new Message({ sender: { username: user.username }, content: content });
         // Add the message to the chat's messages array
         chat.messages.push(message);
         // Save the updated chat

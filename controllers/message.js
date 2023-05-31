@@ -22,15 +22,15 @@ const createMessage = async(req, res) => {
 };
 
 const getMessages = async(req, res) => {
-    const chatId = req.params._id;
-    console.log(req.query);
+    console.log("ddd");
+    const chatId = req.params.id;
     console.log(chatId + 'dvsd');
     try{
         const temp = (await messageService.getMessages(chatId));
         if(temp === 1){
             res.status(400).json({ error: 'Error there is no chat with this id' });
         } else{
-             res.status(200).json({temp});
+             res.status(200).json(temp);
         }
         } catch{
             res.status(500).json({ error: 'Failed to retrieve mongodb' });
