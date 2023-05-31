@@ -14,7 +14,7 @@ const getChats = async (username) => {
              lastMes = chat.messages[0];
         } 
         const chatData = {
-            id: chat.id,
+            id: chat._id,
             user: otherUser,
             lastMessage: lastMes
           };
@@ -30,6 +30,7 @@ const getChats = async (username) => {
 const postChats = async (username, newUser) => {
   const userCount = await Chat.countDocuments();
   const newChatContact = await Check.findOne({ username: newUser });
+  //const chatCount = await Chat.countDocuments();
 
   if (newChatContact === null) {
     return -1;
@@ -52,7 +53,7 @@ const postChats = async (username, newUser) => {
   const users = [newChatContact2, me2];
 
 
-  const value = new Chat({ users: users, messages: msg });
+  const value = new Chat({users: users, messages: msg });
   try{
     await value.save();
   }catch(err){
