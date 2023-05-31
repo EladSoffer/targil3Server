@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const User = require('../models/User'); // Update the path to the User model file
-const Message = require('../models/Message');
 
 const Schema = mongoose.Schema;
 
@@ -31,16 +29,3 @@ const ChatSchema = new Schema({
 });
 
 module.exports = mongoose.model('Chat', ChatSchema);
-
-
-
-
-
-
-
-
-
-
-
-
-

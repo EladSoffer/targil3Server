@@ -4,10 +4,10 @@ const express = require('express');
 var router = express.Router();
 
 
-router.get('/',isLoggedIn,oneChatControllers.getOneChat);
+router.get('/:id',isLoggedIn,oneChatControllers.getOneChat);
 
 
-router.delete('/',isLoggedIn,oneChatControllers.deleteChat);
+router.delete('/:id',isLoggedIn,oneChatControllers.deleteChat);
 
 
 module.exports = router;
