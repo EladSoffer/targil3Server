@@ -30,7 +30,7 @@ const getChats = async (username) => {
 const postChats = async (username, newUser) => {
   const userCount = await Chat.countDocuments();
   const newChatContact = await Check.findOne({ username: newUser });
-  //const chatCount = await Chat.countDocuments();
+  
 
   if (newChatContact === null) {
     return -1;

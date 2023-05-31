@@ -13,7 +13,10 @@ const UserSchema = new Schema({
 
 const MessageSchema = new Schema({
   content: String,
-  timestamp: Date,
+  created: {
+    type: Date,
+    default: Date.now
+  },
   sender: UserSchema
 });
 
