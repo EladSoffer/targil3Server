@@ -29,13 +29,13 @@ const createMessage = async (content, username, chatId) => {
 
 const getMessages = async (chatId) => {
     try {
-        console.log("aaa");
         const chat = await Chats.findById(chatId);
-        console.log("bbbb")
+        const temp = chat.messages.reverse();
+        console.log(temp);
         if (!chat) {
             return 1; /// there isn't this chat
         } else {
-            return chat.messages;
+            return temp;
         }
     } catch (error) {
         throw new Error('Failed to get the chat in mongodb');

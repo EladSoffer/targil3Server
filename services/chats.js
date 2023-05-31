@@ -11,7 +11,7 @@ const getChats = async (username) => {
         const otherUser = chat.users.find((user) => user.username !== username);
         let lastMes = null;
         if(chat.messages.length != 0){
-             lastMes = chat.messages[0];
+             lastMes = chat.messages[chat.messages.length - 1];
         } 
         const chatData = {
             id: chat._id,
