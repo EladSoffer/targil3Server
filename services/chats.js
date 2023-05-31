@@ -57,7 +57,6 @@ const postChats = async (username, newUser) => {
   try{
     await value.save();
   }catch(err){
-    console.log("problem");
   }
   const chatId = value._id.toString();
   
