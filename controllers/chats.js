@@ -23,6 +23,7 @@ const postChats = async(req, res) =>{
     const tokenValue = parsedToken.token;
     const data = jwt.verify(tokenValue, key);
     const newUser = req.body.username;
+
     try{
         const user = await chatsService.postChats(data.username, newUser);
         if (user === -1){

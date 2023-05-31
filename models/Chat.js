@@ -3,9 +3,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  id:{
+  id: {
     type: Number,
-    unique: true
   },
   username: String,
   displayName: String,
@@ -19,6 +18,9 @@ const MessageSchema = new Schema({
 });
 
 const ChatSchema = new Schema({
+  id: {
+    type: Number,
+  },
   users: [UserSchema],
   messages: [MessageSchema]
 });

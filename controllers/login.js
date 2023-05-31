@@ -17,7 +17,6 @@ async function login(req, res) {
       // User with the provided username and password found - Generate JWT
       const data = { username: user.username };
       const token = jwt.sign(data, key);
-      console.log(token);
       res.status(200).json({ token });
     } else {
       // User with the provided username and/or password not found

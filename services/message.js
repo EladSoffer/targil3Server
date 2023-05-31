@@ -9,7 +9,6 @@ const createMessage = async (content, username, chatId) => {
         if (!chat) {
             return 1; /// there isn't this chat
         }
-        console.log(username);
         const senderWithPass = UserPassName.findOne({ username });
         // const user = new User({
         //     username: senderWithPass.username,
@@ -30,7 +29,9 @@ const createMessage = async (content, username, chatId) => {
 
 const getMessages = async (chatId) => {
     try {
+        console.log("aaa");
         const chat = await Chats.findById(chatId);
+        console.log("bbbb")
         if (!chat) {
             return 1; /// there isn't this chat
         } else {
