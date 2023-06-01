@@ -18,10 +18,21 @@ const io = socketIO(server,{
 });
 
 io.on('connection', (socket) => {
-  console.log('New client connected');
+  // console.log('New client connected');
+  // console.log('Socket ID:', socket.id);
+  socket.on('deleteChat', (chatId) => {
+    // Emit the delete event to all clients except the sender
+    socket.broadcast.emit('chatDeleted', chatId);
+  });
+  socket.on('sendMessage', (chatId, message) => {
+    console.log("chat    " + chatId);
+    console.log("mes   "+ message)
+    socket.broadcast.emit('MessageSent', chatId, message);
+  });
 
   socket.on('disconnect', () => {
-    console.log('Client disconnected');
+    // console.log('Client disconnected');
+    // console.log('Socket ID:', socket.id);
   });
 });
 
