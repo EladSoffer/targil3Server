@@ -18,21 +18,30 @@ const io = socketIO(server,{
 });
 
 io.on('connection', (socket) => {
-  // console.log('New client connected');
-  // console.log('Socket ID:', socket.id);
+
+  console.log('New client connected');
+  console.log('Socket ID:', socket.id);
   socket.on('deleteChat', (chatId) => {
+    console.log("someone delete" + chatId);
     // Emit the delete event to all clients except the sender
     socket.broadcast.emit('chatDeleted', chatId);
   });
-  socket.on('sendMessage', (chatId, message) => {
+
+    socket.on('addChat', (friend) => {
+      console.log("someone add" + friend);
+      // Emit the delete event to all clients except the sender
+      socket.broadcast.emit('addedYou', friend);
+    });
+   socket.on('sendMessage', (chatId, message) => {
     console.log("chat    " + chatId);
     console.log("mes   "+ message)
     socket.broadcast.emit('MessageSent', chatId, message);
   });
 
   socket.on('disconnect', () => {
-    // console.log('Client disconnected');
-    // console.log('Socket ID:', socket.id);
+    console.log('Client disconnected');
+    console.log('Socket ID:', socket.id);
+
   });
 });
 
@@ -74,5 +83,6 @@ const chat = require('./routes/oneChat.js');
 app.use('/api/Chats', chat);
 
 app.set('view engine', 'ejs');
+
 
 module.exports = { app, server, io };

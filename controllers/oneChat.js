@@ -19,7 +19,6 @@ const getOneChat = async(req, res) => {
 const deleteChat = async(req, res) =>{
     const chatId = req.params.id;
     try{
-        console.log("ffff   " + chatId);
         const temp = await oneChatService.deleteChat(chatId);
         if(temp === 1){
             res.status(400).json({ error: 'Error there is no chat with this id' });
